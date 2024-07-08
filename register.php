@@ -11,7 +11,7 @@ $class = $_POST['class'] ?? '';
 if (empty($firstName) || empty($lastName) || empty($country) || empty($dob) || empty($fatherName) || empty($class)) {
     echo '<script>
             alert("All fields are required. Please fill out all required fields.");
-            window.location.href = "Home.php"; // Redirect to the registration form page
+            window.location.href = "Home.html"; // Redirect to the registration form page
           </script>';
     exit();
 }
@@ -69,12 +69,12 @@ $subject = "Alm-International School - New Student Registration";
 if (mail($recipient, $subject, $body, $emailheader)) {
     echo '<script>
             alert("Thank You for Registering. Your Information Has Been Successfully Submitted.");
-            window.location.href = "Home.php"; // Redirect to the registration form page or to a confirmation page
+            window.location.href = "Home.html"; // Redirect to the registration form page or to a confirmation page
           </script>';
 } else {
     echo '<script>
             alert("Sorry, There Was an Error While Processing Your Registration. Please Try Again Later.");
-            window.location.href = "Home.php"; // Redirect to the registration form page
+            window.location.href = "Home.html"; // Redirect to the registration form page
           </script>';
 }
 ?>
