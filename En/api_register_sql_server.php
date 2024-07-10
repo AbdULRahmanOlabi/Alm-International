@@ -17,7 +17,7 @@ $class = $data['class'] ?? '';
 
 // Database connection
 try {
-    $pdo = new PDO('sqlsrv:Server=localhost;Database=website_db', 'username', 'pass');
+    $pdo = new PDO('sqlsrv:Server=localhost;Database=website_db', 'sa', 'olabi9591@$');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Prepare SQL statement

@@ -64,12 +64,12 @@
   if (mail($recipient, $subject, $body, $emailheader)) {
     echo '<script>
             alert("Your Message Has Been Successfully Sent.");
-            window.location.href = "Home.php"; // Redirect to a specified path
+            window.location.href = "Home.html"; // Redirect to a specified path
           </script>';
   } else {
     echo '<script>
             alert("Sorry, There Was an Error While Sending Your Message. Please Try Again Later.");
-            window.location.href = "Home.php"; // Redirect to a specified path
+            window.location.href = "Home.html"; // Redirect to a specified path
           </script>';
   }
 ?>

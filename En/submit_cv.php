@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/SMTP.php'; 
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/Exception.php';
+require '../PHPMailer/src/SMTP.php'; 
 
 $mail = new PHPMailer(true);
 
@@ -46,17 +46,17 @@ try {
             $mail->addAttachment($fileTmpPath, $fileName);
 
             if ($mail->send()) {
-                echo '<script>alert("Your CV has been successfully submitted."); window.location="Home.php";</script>';
+                echo '<script>alert("Your CV has been successfully submitted."); window.location="Home.html";</script>';
             } else {
                 throw new Exception('Mailer Error: ' . $mail->ErrorInfo);
             }
         } else {
-            echo '<script>alert("Invalid file type. Please submit only PDF, DOC, or DOCX files."); window.location="Home.php";</script>';
+            echo '<script>alert("Invalid file type. Please submit only PDF, DOC, or DOCX files."); window.location="Home.html";</script>';
         }
     } else {
         throw new Exception("Error: No file uploaded or file too large.");
     }
 } catch (Exception $e) {
-    echo '<script>alert("' . $e->getMessage() . '"); window.location="Home.php";</script>';
+    echo '<script>alert("' . $e->getMessage() . '"); window.location="Home.html";</script>';
 }
 ?>
