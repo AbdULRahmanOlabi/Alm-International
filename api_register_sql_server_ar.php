@@ -37,15 +37,15 @@ try {
     // Check if insert was successful
     if ($stmt->rowCount()) {
         http_response_code(200); 
-        echo json_encode(['message' => 'Thank you for registering. Your information has been successfully submitted.']);
+        echo json_encode(['message' => 'شكرا لتسجيلك. لقد تم إرسال المعلومات الخاصة بك بنجاح.']);
     } else {
         // If no rows were inserted
         http_response_code(500); 
-        echo json_encode(['message' => 'Registration failed, please try again.']);
+        echo json_encode(['message' => 'فشل التسجيل، يرجى المحاولة مرة أخرى.']);
     }
 } catch (PDOException $e) {
     // Return error message if connection fails
     http_response_code(500); 
-    echo json_encode(['message' => 'Database error: ' . $e->getMessage()]);
+    echo json_encode(['message' => 'خطأ في قاعدة البيانات: ' . $e->getMessage()]);
 }
 ?>
