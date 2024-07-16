@@ -5,6 +5,31 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
+// Function to verify reCAPTCHA
+function verifyRecaptcha($response)
+{
+    $recaptcha_secret = ''; // Replace with your reCAPTCHA secret key
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+        'secret' => $recaptcha_secret,
+        'response' => $response
+    );
+
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'content' => http_build_query($data)
+        )
+    );
+
+    $context = stream_context_create($options);
+    $verify = file_get_contents($url, false, $context);
+    $captcha_success = json_decode($verify);
+
+    return $captcha_success->success;
+}
+
 // Get the JSON POST body
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -15,7 +40,7 @@ $dob = $data['dob'] ?? '';
 $fatherName = $data['fatherName'] ?? '';
 $class = $data['class'] ?? '';
 
-// Database connection
+// Database connection and insertion
 try {
     $pdo = new PDO('sqlsrv:Server=localhost;Database=website_db', 'sa', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -36,16 +61,16 @@ try {
 
     // Check if insert was successful
     if ($stmt->rowCount()) {
-        http_response_code(200); 
+        http_response_code(200);
         echo json_encode(['message' => 'شكرا لتسجيلك. لقد تم إرسال المعلومات الخاصة بك بنجاح.']);
     } else {
         // If no rows were inserted
-        http_response_code(500); 
+        http_response_code(500);
         echo json_encode(['message' => 'فشل التسجيل، يرجى المحاولة مرة أخرى.']);
     }
 } catch (PDOException $e) {
     // Return error message if connection fails
-    http_response_code(500); 
+    http_response_code(500);
     echo json_encode(['message' => 'خطأ في قاعدة البيانات: ' . $e->getMessage()]);
 }
 ?>

@@ -231,6 +231,15 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function submitEnglishForm(event) {
       event.preventDefault();
+
+      // Get reCAPTCHA token
+      const recaptchaResponse = grecaptcha.getResponse();
+
+      if (!recaptchaResponse) {
+        alert("Please complete the reCAPTCHA.");
+        return;
+      }
+
       const formData = {
         firstName: document.querySelector("#firstName").value,
         lastName: document.querySelector("#lastName").value,
@@ -238,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dob: document.querySelector("#dob").value,
         fatherName: document.querySelector("#fatherName").value,
         class: document.querySelector("#class").value,
+        "g-recaptcha-response": recaptchaResponse,
       };
 
       fetch("api_register_sql_server.php", {
@@ -255,6 +265,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((data) => {
           alert(data.message);
+          // Optionally reset the form after successful submission
+          document.getElementById("registrationFormEn").reset();
         })
         .catch((error) => {
           console.error(
@@ -270,6 +282,15 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function submitArabicForm(event) {
       event.preventDefault();
+
+      // Get reCAPTCHA token
+      const recaptchaResponse = grecaptcha.getResponse();
+
+      if (!recaptchaResponse) {
+        alert("يرجى إكمال اختبار reCAPTCHA.");
+        return;
+      }
+
       const formData = {
         firstName: document.querySelector("#firstName").value,
         lastName: document.querySelector("#lastName").value,
@@ -277,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dob: document.querySelector("#dob").value,
         fatherName: document.querySelector("#fatherName").value,
         class: document.querySelector("#class").value,
+        "g-recaptcha-response": recaptchaResponse, // Include reCAPTCHA response
       };
 
       fetch("api_register_sql_server_ar.php", {
@@ -294,6 +316,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((data) => {
           alert(data.message);
+          // Optionally reset the form after successful submission
+          document.getElementById("registrationFormAr").reset();
         })
         .catch((error) => {
           console.error("حدث خطأ أثناء معالجة تسجيلك:", error);
@@ -301,13 +325,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Attach submit event to the forms
-    let englishForm = document.querySelector("#student-registration");
-    let arabicForm = document.querySelector("#student-registration-ar");
-
-    if (englishForm) {
-      englishForm.addEventListener("submit", submitEnglishForm);
-    }
+    // Attach submit event to the Arabic form
+    let arabicForm = document.querySelector("#registrationFormAr");
 
     if (arabicForm) {
       arabicForm.addEventListener("submit", submitArabicForm);

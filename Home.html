@@ -58,7 +58,8 @@
           <li class="dropdown">
             <a href="#"><span>اللغة</span> <i class="bi bi-translate"></i></a>
             <ul>
-              <li><a href="En/Home.html"><iconify-icon icon="emojione-v1:flag-for-united-states"></iconify-icon> الإنجليزية</a>
+              <li><a href="En/Home.html"><iconify-icon icon="emojione-v1:flag-for-united-states"></iconify-icon>
+                  الإنجليزية</a>
               </li>
               <li><a href="#"><iconify-icon icon="emojione-v1:flag-for-syria"></iconify-icon> العربية</a></li>
             </ul>
@@ -707,14 +708,14 @@
                 </div>
               </div>
               <div class="form-group" style="margin-bottom: 15px;">
-                <input type="text" class="form-control" name="country" id="country" placeholder="الدولة" required>
+                <input type="text" class="form-control" name="fatherName" id="fatherName" placeholder="اسم الأب"
+                  required>
               </div>
               <div class="form-group" style="margin-bottom: 15px;">
                 <input type="date" class="form-control" name="dob" id="dob" placeholder="تاريخ الميلاد" required>
               </div>
               <div class="form-group" style="margin-bottom: 15px;">
-                <input type="text" class="form-control" name="fatherName" id="fatherName" placeholder="اسم الأب"
-                  required>
+                <input type="text" class="form-control" name="country" id="country" placeholder="دولة الاقامة الحالية" required>
               </div>
               <div class="form-group" style="margin-bottom: 20px;">
                 <select name="class" id="class" class="form-control">
@@ -739,6 +740,7 @@
                   <option value="المستوى الرابع من المنهاج ب">المستوى الرابع من المنهاج ب</option>
                 </select>
               </div>
+              <div class="g-recaptcha" data-sitekey=""></div>
               <div class="text-center">
                 <button type="submit">سجل الآن</button>
               </div>
@@ -989,6 +991,9 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- Include the reCAPTCHA API script -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
