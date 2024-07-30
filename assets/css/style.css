@@ -26,6 +26,38 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Scrollbar
+--------------------------------------------------------------*/
+
+body {
+  --sb-track-color: #232E33;
+  --sb-thumb-color: #8331a7;
+  --sb-size: 11px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
+/*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
@@ -1029,7 +1061,7 @@ section {
 .why-us .box img.circle-image {
   width: 75px; /* Adjust size as needed */
   height: 75px; /* Adjust size as needed */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   margin-left: 15px !important;
   margin-bottom: 150px;
 }
@@ -1094,7 +1126,7 @@ section {
 .why-us-ar .box img.circle-image {
   width: 75px; /* Adjust size as needed */
   height: 75px; /* Adjust size as needed */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   margin-right: 15px !important;
   margin-bottom: 150px;
 }

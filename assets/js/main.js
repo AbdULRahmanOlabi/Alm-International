@@ -267,6 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message);
           // Optionally reset the form after successful submission
           document.getElementById("registrationFormEn").reset();
+          grecaptcha.reset();
         })
         .catch((error) => {
           console.error(
@@ -318,6 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message);
           // Optionally reset the form after successful submission
           document.getElementById("registrationFormAr").reset();
+          grecaptcha.reset();
         })
         .catch((error) => {
           console.error("حدث خطأ أثناء معالجة تسجيلك:", error);
@@ -325,8 +327,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Attach submit event to the Arabic form
-    let arabicForm = document.querySelector("#registrationFormAr");
+    // Attach submit event to the forms
+    let englishForm = document.querySelector("#student-registration");
+    let arabicForm = document.querySelector("#student-registration-ar");
+
+    if (englishForm) {
+      englishForm.addEventListener("submit", submitEnglishForm);
+    }
 
     if (arabicForm) {
       arabicForm.addEventListener("submit", submitArabicForm);
